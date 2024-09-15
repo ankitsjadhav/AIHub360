@@ -115,6 +115,7 @@ const CodePage = () => {
                         <Empty label="No Conversation Started." />
                     )} */}
                    <div className="flex flex-col-reverse gap-y-4">
+                    
                    <div 
                         className="p-8 w-full flex items-start gap-x-8 rounded-lg big-white border border-black/10" >
                            <UserAvatar />
@@ -131,13 +132,9 @@ const CodePage = () => {
                                      )
                                }}
                                className ="text-sm overflow-hidden leading-7"
-                              >
-                          
-                           
+                              > 
                             {messages || ""}
                            </ReactMarkdown> 
-                         
-                            {/* <p className="text-sm">{messages}</p> */}
                             </div>
                     {/* {messages.map((message, index) => ( 
                         <div 
@@ -146,6 +143,7 @@ const CodePage = () => {
                             <p className="text-sm">{String(message.content)}</p>
                             </div>
                     ))} */}
+            
 
                     
                    
