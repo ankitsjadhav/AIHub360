@@ -66,6 +66,8 @@ export async function POST(req: Request) {
 
     
     // const generatedText = result?.response?.text || "No response text available";
+    
+    // API Response Parsing: There might be a problem in how the API response is being parsed and extracted.
 
     return NextResponse.json({ message: generatedText });
 
@@ -124,4 +126,3 @@ export async function POST(req: Request) {
 //         return new NextResponse ("Internal error", {status: 500});
 //     }
 // }  
-
