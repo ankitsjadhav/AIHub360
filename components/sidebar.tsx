@@ -7,6 +7,12 @@ import { Code, ImageIcon, LayoutDashboard, MessageSquare, Music, Settings, Video
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
+import { FreeCounter } from "@/components/free-counter";
+
+const monsterrat = Montserrat ({
+    weight: "600",
+    subsets: ["latin"]
+});
 
 const routes = [
     {
@@ -45,14 +51,15 @@ const routes = [
     href: "/settings",
 },
 ];
+interface SidebarProps {
+    apiLimitCount: number;
+};    
 
-const monsterrat = Montserrat ({
-    weight: "600",
-    subsets: ["latin"]
-});
-
-const Sidebar = () => {
+const Sidebar = ({
+    apiLimitCount = 0
+}: SidebarProps) => {
     const pathname = usePathname();
+    
     return ( 
         <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
         <div className="px-3 py-2 flex-1">
@@ -82,6 +89,9 @@ const Sidebar = () => {
             </div>
 
         </div>
+        <FreeCounter
+        apiLimitCount={apiLimitCount}
+        />
         </div>
 
 
