@@ -1,7 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import dotenv from 'dotenv';
-import { GoogleGenerativeAI, GenerativeModel } from "@google/generative-ai"; 
+import { GoogleGenerativeAI, GenerativeModel } from "@google/generative-ai";
+import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit"; 
 
 dotenv.config();
 
@@ -35,6 +36,12 @@ export async function POST(req: Request) {
       return new NextResponse("resolution are required", { status: 400 });
     }
 
+    const freeTrial = await checkApiLimit();
+
+    if(!freeTrial) {
+      return new NextResponse("Free trial has expired.", {status: 403});
+    }
+
     // Initialize the model and generate content
     // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
@@ -48,6 +55,8 @@ export async function POST(req: Request) {
       n: parseInt(amount,10),
       size: resolution,
     });
+
+    await increaseApiLimit();
   
     // const result = await model.generateContent(prompt);       (for AI Inbuild response)
 

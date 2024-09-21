@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import dotenv from 'dotenv';
 import { GoogleGenerativeAI } from "@google/generative-ai"; 
+import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 
 dotenv.config();
 
@@ -27,6 +28,12 @@ export async function POST(req: Request) {
       return new NextResponse("Messages are required", { status: 400 });
     }
 
+    const freeTrial = await checkApiLimit();
+
+    if(!freeTrial) {
+      return new NextResponse("Free trial has expired.", {status: 403});
+    }
+
     const prompt = messages.map((msg: any) => msg.content).join('\n');
 
     // Initialize the model and generate content
@@ -49,6 +56,8 @@ export async function POST(req: Request) {
         temperature: 0.1,
       },
     });
+
+    await increaseApiLimit();
 
     // const result = await model.generateContent(prompt);       (for AI Inbuild response)
 
