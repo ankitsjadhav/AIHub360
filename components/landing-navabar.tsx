@@ -29,9 +29,15 @@ export const LandingNavbar = () => {
                </div>
                <h1 className={cn("text-2xl font-bold text-white", font.className)}>
                 Nexus
-
-               </h1>
+                 </h1>
             </Link>
+            <div className="flex items-center gap-x-2">
+                <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
+                <Button variant="outline" className="rounded-full bg-white text-black border-2 hover:bg-[#007bff] hover:text-white hover:border-transparent transition-all duration-300 ease-in-out shadow-sm hover:shadow-lg transform hover:scale-105">
+                    Get Started
+                </Button>
+                </Link>
+</div>
         </nav>
     )
 }
