@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^5.5.1",
     "@google/generative-ai": "^0.18.0",
     "@hookform/resolvers": "^3.9.0",
+    "@leap-ai/sdk": "^1.1.4",
     "@prisma/client": "^5.19.1",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
