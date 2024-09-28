@@ -28,6 +28,8 @@
     "lucide-react": "^0.439.0",
     "next": "14.2.8",
     "openai": "^4.59.0",
+    "pexels": "^1.4.0",
+    "pexels-api": "^1.0.5",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
